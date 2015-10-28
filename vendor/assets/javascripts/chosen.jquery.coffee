@@ -472,6 +472,15 @@ class Chosen extends AbstractChosen
         break
       when 13
         evt.preventDefault() if this.results_showing
+        if (this.results_showing && @allow_new_values_in_multi) 
+          if (!this.is_multiple || this.result_highlight) 
+            return this.result_select(evt)
+
+          $(this.form_field).append('<option>' + $(evt.target).val() + '</option>')
+          $(this.form_field).trigger('chosen:updated')
+          this.result_highlight = this.search_results.find('li.active-result').last()
+          return this.result_select(evt)
+
         break
       when 32
         evt.preventDefault() if @disable_search

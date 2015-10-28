@@ -33,6 +33,7 @@ class AbstractChosen
     @display_disabled_options = if @options.display_disabled_options? then @options.display_disabled_options else true
     @include_group_label_in_selected = @options.include_group_label_in_selected || false
     @max_shown_results = @options.max_shown_results || Number.POSITIVE_INFINITY
+    @allow_new_values_in_multi = !!@options.allow_new_values_in_multi
 
   set_default_text: ->
     if @form_field.getAttribute("data-placeholder")

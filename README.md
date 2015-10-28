@@ -40,15 +40,22 @@ Add to your `app/assets/stylesheets/application.css`
 
 ### Enable chosen javascript by specific css class
 
-Add to one coffee script file, like `scaffold.js.coffee`
+Add to one javascript/coffeescript file, like `application.js`
 
-```coffee
-$ ->
-  # enable chosen js
-  $('.chosen-select').chosen
-    allow_single_deselect: true
-    no_results_text: 'No results matched'
-    width: '200px'
+```javascript
+
+$(document).ready(function() {
+  $('.chosen-select').not('.tag-list').chosen({
+    allow_single_deselect: true,
+    no_results_text: 'No results matched'});
+
+  $('.chosen-select.tag-list').chosen({
+    allow_single_deselect: true,
+    no_results_text: 'No results matched',
+    allow_new_values_in_multi: true});
+});
+
+
 ```
 
 Notice: `width` option is required since `Chosen 0.9.15`.
